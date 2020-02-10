@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+{% include "stream/location_strip.html" %}
+<div id="page-div">
+    <div id="top-text">
+        {{ page.top_text|richtext }}
+    </div>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3290.4390315119053!2d-119.66338798477473!3d34.44100168050197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e913060c477625%3A0xa94db3cc9712d9f9!2s2243+Sycamore+Canyon+Rd%2C+Montecito%2C+CA+93108!5e0!3m2!1sen!2s!4v1469432015629" 
+         id="gmap-iframe" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+
+</div>
+<style>
+#page-div {
+    margin-bottom: 50px;
+
+}
+#top-text {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+#top-text a{
+    text-decoration: underline;
+    color: black;
+}
+@media only screen and (min-width: 1200px) {
+    #gmap-iframe {
+        width: 1200px;
+        height: 400px;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 1199px) {
+    #gmap-iframe {
+        width: 700px;
+        height: 350px;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 699px) {
+    #gmap-iframe {
+        width: 400px;
+        height: 300px;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+    }
+}
+
+</style>
+{% endblock %}

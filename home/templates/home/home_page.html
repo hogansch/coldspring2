@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+
+{% block content %}
+
+<div id="image-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="7000">
+    <ol class="carousel-indicators">
+        {% for loop_cycle in self.carousel_images.all %}
+            <li 
+            data-target="#image-carousel"
+            data-slide-to="{{ forloop.counter|add:'-1' }}" 
+            class="{% if forloop.counter == 1 %}active{% endif %}"></li>
+        {% endfor %}
+
+    </ol>
+    <div class="carousel-inner">
+        {% for loop_cycle in self.carousel_images.all %}
+            {% image loop_cycle.carousel_image fill-900x400 as img_ %}
+            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                <img src="{{ img_.url }}" class="d-block w-100" alt="{{ img_.alt }}">
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <p class="angelou-caption">"I've learned that people will forget what you said,
+                people will forget what you did, but people will never forget how you made them feel.”
+                Maya Angelou</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="flex-container-mid">
+    <img id="roof-drawing" src="{{'/static/images/logo_drawing.png'}}" alt="hand drawing of the roof of one of the Cold Spring School buildings">
+    <div class="h2-container">
+        <h2>CREATIVITY AND INNOVATIVE THINKING</h2>
+        <p id="motto">A Cold Spring School Education fosters a balance of academic achievement,
+        healthy personal development, social and environmental responsibility,
+        and enthusiasm for lifelong learning.</p>
+    </div>
+</div>
+<div id="main-links-container" style="display: block; position: relative; left: 50%; margin-bottom: 40px;">
+    <div class="three-chunker">
+        <a class="circle-anchors" href="./library">
+            <div class="circle-pic-link">
+                <div class="image-bucket">
+                    <div class="background-img" id="library-image" alt="library reading nook">
+
+                    </div>
+                    <div class="color-over">
+
+                    </div>
+                    <div class="search-icn">
+                        <img src="{{'/static/images/search_icon.png'}}">
+                    </div>
+                </div>
+                <div class="circle-title">
+                    <p>LIBRARY</p>
+                </div>
+            </div>  
+        </a>
+        <a class="circle-anchors" href="./steam">
+            <div class="circle-pic-link">
+                <div class="image-bucket">
+                    <div class="background-img" id="steam-image" style="" alt="smiling kid holding a craft project">
+
+                    </div>
+                    <div class="color-over">
+
+                    </div>
+                    <div class="search-icn">
+                        <img src="{{'/static/images/search_icon.png'}}">
+                    </div>
+                </div>
+                <div class="circle-title">
+                    <p>STEAM</p>
+                </div>
+            </div>  
+        </a>
+        <a class="circle-anchors" href="./art">
+            <div class="circle-pic-link">
+                <div class="image-bucket">
+                    <div class="background-img" id="art-image" style="" alt="kids doing chalk art">
+
+                    </div>
+                    <div class="color-over">
+
+                    </div>
+                    <div class="search-icn">
+                        <img src="{{'/static/images/search_icon.png'}}">
+                    </div>
+                </div>
+                <div class="circle-title">
+                    <p>ART</p>
+                </div>
+            </div>  
+        </a>
+    </div>
+    <div class="three-chunker">
+        <a  class="circle-anchors"href="./pe">
+            <div class="circle-pic-link">
+                <div class="image-bucket">
+                    <div class="background-img" id="pe-image" style="" alt="kids running outside">
+
+                    </div>
+                    <div class="color-over">
+
+                    </div>
+                    <div class="search-icn">
+                        <img src="{{'/static/images/search_icon.png'}}">
+                    </div>
+                </div>
+                <div class="circle-title">
+                    <p>P.E.</p>
+                </div>
+            </div>  
+        </a>
+        <a class="circle-anchors" href="./technology">
+            <div class="circle-pic-link">
+                <div class="image-bucket">
+                    <div class="background-img" id="art-image" style="" alt="kids doing crafts">
+
+                    </div>
+                    <div class="color-over">
+
+                    </div>
+                    <div class="search-icn">
+                        <img src="{{'/static/images/search_icon.png'}}">
+                    </div>
+                </div>
+                <div class="circle-title">
+                    <p>TECHNOLOGY</p>
+                </div>
+            </div>  
+        </a>
+        <a class="circle-anchors" href="./music">
+            <div class="circle-pic-link">
+                <div class="image-bucket">
+                    <div class="background-img" id="music-image" style="" alt="kids chorus singing">
+
+                    </div>
+                    <div class="color-over">
+
+                    </div>
+                    <div class="search-icn">
+                        <img src="{{'/static/images/search_icon.png'}}">
+                    </div>
+                </div>
+                <div class="circle-title">
+                    <p>MUSIC</p>
+                </div>
+            </div>  
+        </a>
+    </div>
+</div>
+<div class="above-footer">
+
+<div style="text-align: center;">
+    <h2 class="super-header">SUPERINTENDENT / PRINCIPAL HIGHLIGHTS</h2>
+</div>
+<div class="container" style="margin-top: 80px;">
+    <div class="row">
+            <div class="textbox col mx-2">
+                
+                    <div>
+                        <p style="font-weight:400">SUPERINTENDENT/PRINCIPAL MESSAGE</p>
+                    </div>
+                    <p class="textbox-text">To stay up to date with the latest information and news happening at Cold Spring School,
+                    click here to read Dr. Alzina's weekly newletter...</p>
+                    <a class="read-more" href="">Read More</a>
+                
+            </div>
+            <div class="w-100 breaker"></div>
+            <div class="textbox col mx-2">
+                
+                    <div>
+                        <p style="font-weight:400">LCAP/CALIFORNIA DASHBOARD</p>
+                    </div>
+                    <p class="textbox-text">Cold Spring School District is committed to continuing the
+                    work conducted by its teachers in the preparation of curriculum</p>
+                    <a class="read-more" href="./lcap-california-dashboard">Read More</a>
+                
+            </div>
+            <div class="w-100 breaker"></div>
+            <div class="textbox col mx-2">
+                
+                    <div>
+                        <p style="font-weight:400">CALENDAR OF EVENTS</p>
+                    </div>
+                    <div id="cal-container">
+                        <a href="">
+                            <img class="calendar" src="/static/images/calendar-icon.png">
+                        </a>
+                    </div>
+                    <a class="read-more" href="">Read More</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(window).scroll(function(){
+    //more then or equals to
+    if($(window).scrollTop() >= 100 ){
+        $( "#bottom-widget" ).css( "display", "block" );
+    
+    //less then 100px from top
+    } else {
+        
+    $( "#bottom-widget" ).css( "display", "none" );
+    }
+    });
+
+    function topFunction() {
+        $("html, body").animate({scrollTop: "0px"});
+    //   document.body.animate({scrollTop: '0px'}); // For Safari
+    //   document.documentElement.animate({scrollTop: '0px'}); // For Chrome, Firefox, IE and Opera
+    }
+    $(document).bind('keyup', function(e) {
+            if(e.which == 39){
+                $('.carousel').carousel('next');
+            }
+            else if(e.which == 37){
+                $('.carousel').carousel('prev');
+            }
+        });
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+

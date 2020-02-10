@@ -1,0 +1,19 @@
+<div class="blocktext 
+{% if self.bg_color == 'lightgray' %}lightgray {% endif %}">
+    {{ self.richtext_content }}
+</div>
+<style>
+    .blocktext {
+        padding-left: 7%;
+        padding-right: 7%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 30px;
+    }
+
+    .lightgray {
+        background-color: rgb(243, 243, 243);
+    }
+</style>

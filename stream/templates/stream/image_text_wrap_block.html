@@ -1,0 +1,64 @@
+{% load wagtailimages_tags %}
+<div class="wrap-block-container
+    {% if self.bg_color == 'lightgray' %}
+    'lightgray'
+    {% endif %}
+    ">
+    <div class="wrap-block 
+        {% if self.position == 'image_on_left' %}
+        fl-left 
+        {% else %}
+        fl-right 
+        {% endif %}">
+        {% image self.image max-600x600 %}
+    </div>
+    <div class="wrap-block">
+        {{ self.text }}
+    </div>
+</div>
+
+<style>
+    .wrap-block-container {
+        line-height: 2.5rem;
+    }
+
+    .fl-left {
+        position: relative;
+        top: 25px;
+        float: left;
+        margin-bottom: 1%;
+    }
+
+    .fl-right {
+        float: right
+    }
+
+    .wrap-block {
+        padding: 2%;
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 30px;
+    }
+
+    .lightgray {
+        background-color: rgb(243, 243, 243)
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .wrap-block-container {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+    }
+
+    @media only screen and (max-width: 700px ) {
+        .fl-left, .fl-right {
+            float: none;
+            text-align: center;
+        }
+        .wrap-block {
+            margin-top: 30px;
+        }
+    }
+
+</style>

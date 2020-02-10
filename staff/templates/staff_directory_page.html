@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags staff_extras %}
+
+{% block content %}
+
+{% include "stream/location_strip.html" %}
+
+<div id="page-div">
+    <table id="staff-table">
+        <tr>
+            <th class="staff-table-heading">Teachers</th>
+            <th class="staff-table-heading">Title</th>
+            <th class="staff-table-heading">Phone / Ext</th>
+        </tr>
+        {% for teacher in teachers %}
+            <tr class="staff-table-row">
+                <td>
+                    <a href="mailto:{{ teacher.email }}">
+                        {{ teacher.first_name }} {{ teacher.last_name }} 
+                    </a>
+                </td>
+                <td>
+                    {{ teacher.grade|job:"" }}
+                </td>
+                <td>
+                    {% if spec.ext != "---" %}
+                        805.969.2678 ext {{ teacher.ext }}
+                    {% else %}
+                        805.969.2678
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th class="staff-table-heading">Special Assignment</th>
+            <th class="staff-table-heading">Title</th>
+            <th class="staff-table-heading">Phone / Ext</th>
+        </tr>
+        {% for spec in special %}
+            <tr class="staff-table-row">
+                <td>
+                    <a href="mailto:{{ spec.email }}">
+                        {{ spec.first_name }} {{ spec.last_name }} 
+                    </a>
+                </td>
+                <td>
+                    {{ spec.grade }}
+                </td>
+                <td>
+                    {% if spec.ext != "---" %}
+                        805.969.2678 ext {{ spec.ext }}
+                    {% else %}
+                        805.969.2678
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th class="staff-table-heading">Administration</th>
+            <th class="staff-table-heading">Title</th>
+            <th class="staff-table-heading">Phone / Ext</th>
+        </tr>
+        {% for adm in admin %}
+            <tr class="staff-table-row">
+                <td>
+                    <a href="mailto:{{ adm.email }}">
+                        {{ adm.first_name }} {{ adm.last_name }} 
+                    </a>
+                </td>
+                <td>
+                    {{ adm.grade }}
+                </td>
+                <td>
+                    {% if adm.ext != "---" %}
+                        805.969.2678 ext {{ adm.ext }}
+                    {% else %}
+                        805.969.2678
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th class="staff-table-heading">Dolphin Center / 805.969-5330</th>
+            <th class="staff-table-heading">Title</th>
+            <th class="staff-table-heading">Phone / Ext</th>
+        </tr>
+        {% for dol in dolphins %}
+            <tr class="staff-table-row">
+                <td>
+                    {% if dol.email != "" %}
+                        <a href="mailto:{{ dol.email }}">
+                    {% endif %}
+                            {% if dol.first_name != dol.last_name %}
+                                {{ dol.first_name }} {{ dol.last_name }}
+                            {% else %}
+                                TBA
+                            {% endif %}
+                    {% if dol.email != "" %}
+                        </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ dol.grade }}
+                </td>
+                <td>
+                    {% if dol.ext != "---" %}
+                        805.969.2678 ext {{ dol.ext }}
+                    {% else %}
+                        805.969.2678
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<style>
+    .staff-table-heading {
+        background-color: #E5E5E5;
+        width: 550px;
+        border: solid #CCCCCC 1px;
+        padding: 10px;
+        font-size: 17px;
+        font-weight: 400;
+        text-transform: uppercase;
+
+    }
+    #staff-table {
+        margin-top: 25px;
+		width: 100%; 
+		border-collapse: collapse; 
+    }
+    
+    .staff-table-row td {
+        padding: 15px;
+        border: solid #CCCCCC 1px;
+        font-weight: 300;
+
+    }
+
+    .staff-table-row a {
+        color: black;
+        text-decoration: underline;
+    }
+
+    #page-div {
+        margin-bottom: 50px;
+    }
+
+
+
+    #page-div {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+
+    }
+
+</style>
+
+{% endblock %}

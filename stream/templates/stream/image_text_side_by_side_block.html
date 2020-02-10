@@ -1,0 +1,58 @@
+{% load wagtailimages_tags %}
+
+<div class="
+    {% if self.bg_color == 'lightgray' %}
+        lightgray
+    {% endif %}" style="padding-top: 2%; padding-bottom: 2%">
+    <div class="container">
+        <div class="row textimagesidebyside">
+            <div class="col">
+                {% if self.position == 'text_on_left' %}
+                    {{ self.text }}
+                {% else %}
+                    {% image self.image max-600x600 %}
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if self.position == 'text_on_left' %}
+                    {% image self.image max-600x600 %}
+                {% else %}
+                    {{ self.text }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .textimagesidebyside {
+        display: flex;
+    }
+
+    .textimagesidebyside .col {
+        flex: 1; /* additionally, equal width */
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 30px;
+        {% if self.vertical_position == 'middle' %}
+        position: relative;
+        top: 0;
+        bottom: 0;
+        margin: auto
+        {% endif %}
+    }
+
+    .lightgray {
+        background-color: rgb(243, 243, 243)
+    }
+
+    @media only screen and (max-width: 1100px) {
+        .textimagesidebyside .col {
+            padding-top: 3%;
+            padding-bottom: 3%;
+        }
+    }
+    
+
+
+</style>

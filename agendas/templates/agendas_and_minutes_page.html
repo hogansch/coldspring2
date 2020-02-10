@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+{% include "stream/location_strip.html" %}
+
+<h3 class="top-heading">Board Meeting Agendas / Minutes</h3>
+
+<div class="page-div">
+    <div class="year-select-widget">
+        {% csrf_token %}
+        {% now "Y" as current_year %}
+        <label id="selector-label" for="year-select">Year</label>
+        <select id="selector">
+            <option>
+                -Year-
+            </option>
+            <option value="{{ current_year}}">
+                {{ current_year }}
+            </option>
+            <option value="{{ current_year|add:'-1' }}">
+                {{ current_year|add:"-1" }}
+            </option>
+            <option value="{{ current_year|add:'-2' }}">
+                {{ current_year|add:"-2" }}
+            </option>
+            <option value="{{ current_year|add:'-3' }}">
+                {{ current_year|add:"-3" }}
+            </option>
+        </select>
+        <button id="year-submit-button" type="submit" name="submit" value="submit">
+            Apply
+        </button>
+    </div>
+    <table id="agendas-minutes-table">
+        <tr>
+            <th class="agendas-table-heading">Meeting Agendas</th>
+            <th class="agendas-table-heading">Meeting Minutes</th>
+        </tr>
+        {% for agenda in page.agendas %}
+            <tr class="agendas-table-row" data-year="{{ agenda.date|date:'Y' }}">
+                <td>
+                    <a href="{{ agenda.document.url }}">
+                        {{ agenda.document.title }} 
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ agenda.assoc_minutes.document.url }}">
+                        {{ agenda.assoc_minutes.document.title }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+<script>
+
+
+
+    
+    $(function() {
+        $("#year-submit-button").click(function() {
+            let year = $("#selector option:selected").val();
+            if (year == "-Year-") {
+                $('.agendas-table-row').removeClass('hide');
+            } else {
+                $('.agendas-table-row').removeClass('hide');
+                $('.agendas-table-row[data-year!="'+year+'"]').addClass("hide");
+            }
+            $(".agendas-table-row").removeClass("lightgray-bg");
+            $(".agendas-table-row:not(.hide)").each(function(i) {
+            if ((i + 1) % 2 == 0) {
+                $(this).addClass("lightgray-bg");
+            }
+        });
+        });
+        $(".agendas-table-row:not(.hide)").each(function(i) {
+            if ((i + 1) % 2 == 0) {
+                $(this).addClass("lightgray-bg");
+            }
+        });
+    });
+
+
+
+</script>
+<style>
+    .hide {
+        display: none;
+    }
+
+    .top-heading {
+        text-align: center;
+        font-weight: 300;
+        font-size: 22px;
+        margin-top: 40px;
+        color: #0B2B38;
+    }
+    #selector-label {
+        display: block;
+        color: #0B2B38;
+        font-size: 17px;
+        font-weight: 300;
+        margin-bottom: -5px;
+    }
+    #selector {
+        margin-right: 15px;
+    }
+    #year-submit-button {
+        padding: 15px;
+        background-color: #3B5275;
+        color: white;
+        text-transform: uppercase;
+        border-radius: 7px;
+    }
+    .agendas-table-heading {
+        background-color: #E5E5E5;
+        width: 550px;
+        border: solid #CCCCCC 1px;
+        padding: 10px;
+        font-size: 17px;
+        font-weight: 400;
+
+    }
+    #agendas-minutes-table {
+        margin-top: 25px;
+		width: 100%; 
+		border-collapse: collapse; 
+    }
+    
+    .agendas-table-row td {
+        padding: 15px;
+        border: solid #CCCCCC 1px;
+        font-weight: 300;
+
+    }
+
+    .lightgray-bg td{
+            background-color: #F5F5F5;
+    }
+
+    .agendas-table-row a {
+        color: black;
+    }
+
+    .page-div {
+        margin-bottom: 50px;
+    }
+
+
+    @media only screen and (min-width: 1100px) {
+        .page-div {
+            width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+    
+        }
+    }
+
+</style>
+
+
+
+
+
+
+
+{% endblock %}

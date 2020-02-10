@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags staff_extras %}
+
+{% block content %}
+
+{% include "stream/location_strip.html" %}
+
+<div id="page-div">
+    <ul>
+        {% for teacher in teachers %}
+            <li>
+                {{ teacher.grade|job:"abb" }} | 
+                Room {{ teacher.grade }} | 
+                <a href="mailto:{{ teacher.email }}">
+                    {{ teacher.title }} {{ teacher.last_name }}
+            </li>
+        {% endfor %}
+        {% for spec in special %}
+            {% comment %} <li>
+                {{ spec.grade }} | 
+                Room {{ teacher.grade }} | 
+                <a href="mailto:{{ teacher.email }}">
+                    {{ teacher.title }} {{ teacher.last_name }}
+            </li> {% endcomment %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<div style="background-color: rgb(229,236,249); text-align: center; padding: 15px">
+    <h3 style="color: #3B5275; text-transform: uppercase; font-size: 32px">{{page.title}}</h3>
+</div>
+<div style="background-color: #3B5274; font-size: 16px;">
+    <p style="color: white; padding: 7px; margin-left: 80px">
+        You are here: &nbsp;&nbsp;<span style="font-weight: 100;">Home</span>&nbsp; &#187;&nbsp;
+        {% if self.submenutitle != "Home" %} 
+            <span style="font-weight: 300">{{ self.submenutitle }} &nbsp;&#187;&nbsp;
+        {% endif %} 
+        {{ self.title }}</span>
+    </p>
+</div>

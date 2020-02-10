@@ -1,0 +1,56 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400&amp;subset=latin" rel="stylesheet">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}" id="bootstrap-overrides">
+        {% wagtailuserbar 'top-right' %}
+
+        {% include "nav.html" %}
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+        {% include "footer.html" %}
+
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/coldspring3.js' %}"></script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+
+
+        {% endblock %}
+        <button onclick="topFunction()" id="bottom-widget"><i class="fas fa-angle-up" style="margin-top: 10%"></i></button>
+        <script src="https://kit.fontawesome.com/1cb191fef3.js" crossorigin="anonymous"></script>
+    </body>
+    
+</html>

@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags widget_tweaks %}
+
+{% block content %}
+    <div class="super-block">
+        <div class="top-block">
+            <div class="contact-info-block">
+            <h4 id="contact-info-heading">
+                Contact Information
+            </h4>
+                <div class="contact-info-subblock">
+                    <div class="icon-div">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <p class="info-text">
+                        <span style="text-transform: uppercase; font-weight: 400">
+                            COLD SPRING SCHOOL
+                        </span><br>
+                        2243 Sycamore Canyon Road<br>
+                        Santa Barbara, CA 93108
+                    </p>
+                </div>
+                <div class="contact-info-subblock">
+                    <div class="icon-div">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <p class="info-text">
+                        <span style="text-transform: uppercase; font-weight: 400">
+                            PHONE NUMBER
+                        </span><br>
+                        Phone: (805) 969-2678<br>
+                        Fax: (805) 969-0787
+                    </p>
+                </div>
+                <div class="contact-info-subblock">
+                    <p>
+                        <span style="text-decoration: underline;">
+                            Directions:
+                        </span><br>
+                        1. Take exit 94B on the left for Cabrillo Blvd toward Hot Springs Rd<br>
+                        2. Turn left onto E Cabrillo Blvd<br>
+                        3. At the traffic circle, take the 2nd exit onto Hot Springs Rd<br>
+                        4. Turn left onto Sycamore Canyon Rd<br>
+                        Destination will be on the right<br>
+                        View Google Map<br><br>
+                        <a href="./staff-directory">
+                            FACULTY & STAFF DIRECTORY
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="form-block">
+                <form action="{% pageurl page %}" method="POST">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class+="form-control" %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary submit-button" >Submit</button>
+                </form>
+            </div>    
+        </div>
+    </div>
+    <div class="gmap">
+        <iframe width="100%" height="535" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+        src="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=2243+Sycamore+Canyon+Road,+santa+barbara,+ca&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=36.915634,90.527344&amp;ie=UTF8&amp;hq=&amp;hnear=2243+Sycamore+Canyon+Rd,+Santa+Barbara,+California+93108&amp;t=m&amp;ll=34.44146,-119.660296&amp;spn=0.012387,0.018024&amp;z=15&amp;iwloc=near&amp;output=embed">
+        </iframe>
+    </div>
+    
+    <style>
+    .fa-home, .fa-phone-alt {
+        font-size: 30px;
+        background-color: #E5E5E5;
+        padding: 15px;
+        border-radius: 50%;
+    }
+
+    .icon-div {
+        float: left;
+        margin-right: 20px;
+    }
+
+    .info-text {
+        font-size: 17px;
+        font-weight: 300;
+        display: inline-block;
+        letter-spacing: 1px;
+    }
+
+    .contact-info-subblock {
+        display: block;
+        width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-info-subblock a {
+        color: black;
+        text-decoration: underline;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+
+    .contact-info-block {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .top-block {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+    }
+
+    .super-block {
+        width: 100%;
+        border-bottom: solid orange 5px; 
+        overflow: auto;
+        padding-bottom: 30px;
+    }
+
+    form-control {
+    }
+
+    .form-group:nth-of-type(1),
+    .form-group:nth-of-type(2) {
+        margin-right: 22px;
+    }
+
+
+
+    .form-group:nth-of-type(1),
+    .form-group:nth-of-type(2),
+    .form-group:nth-of-type(3)  {
+        width: 195px;
+        float: left;
+        height: 60px;    
+    }
+
+    .form-group textarea {
+        height: 120px;
+    }
+
+    .form-group label::after {
+        content: "*";
+        color: red;
+        padding-left: 10px;
+ 
+    }
+
+    .submit-button {
+        width: 630px;
+        background-color: #3C5275;
+        border-radius: 6px;
+    }
+
+    .submit-button:hover {
+        background-color: orange;
+        border-color: orange;
+    }
+
+
+    #contact-info-heading {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .gmap {
+        margin-bottom: -7px;
+    }
+
+
+
+
+    @media only screen and (min-width: 1025px) {
+        #contact-info-heading {
+            margin-left: 50px;
+            text-align: left;
+        }
+
+        .contact-info-block, .form-block {
+            float: left
+        }
+        .contact-info-block {
+            width: 450px;
+        }
+        .form-block {
+            width: 630px;
+        }
+        .top-block {
+            width: 1170px;
+        }
+    }
+    </style>
+{% endblock %}

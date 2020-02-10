@@ -1,0 +1,32 @@
+{% load wagtailimages_tags %}
+
+<div class="imageblock 
+{% if self.bg_color == 'lightgray' %}lightgray {% endif %}
+{% if self.image_position == 'center' %}center-image {% endif %}
+{% if self.image_size == 'medium' %}medium{% endif %}">
+    {% image self.image original as img %}
+    <img src="{{ img.url }}" alt="{{ img.title }}">
+</div>
+<style>
+
+    .imageblock {
+        padding-top: 3%;
+        padding-bottom: 3%
+    }
+    .lightgray {
+        background-color: rgb(243, 243, 243);
+    }
+    .center-image {
+        display: block;
+        text-align: center;
+    }
+    .medium img {
+        max-width: 35%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+    .center img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
